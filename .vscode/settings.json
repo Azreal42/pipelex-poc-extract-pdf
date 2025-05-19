@@ -10,11 +10,6 @@
         "**/dev_context": true
     },
     "editor.formatOnSave": true,
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#4e008a",
-        "titleBar.activeBackground": "#7c0076",
-        "titleBar.activeForeground": "#F5FCF0"
-    },
     "files.exclude": {
         "**/__pycache__": true,
         ".mypy_cache": true,
