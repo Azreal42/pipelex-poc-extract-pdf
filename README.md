@@ -13,18 +13,12 @@ cd pipelex-cookbook
 
 ## Prepare your virtual environment
 
-Example using venv:
+Example using uv:
 
 ```bash
-python3.11 -m venv .venv
+uv venv --python 3.11
 source .venv/bin/activate
-pip install --upgrade pip
-```
-
-## Install Pipelex and other tools for the cookbook
-
-```bash
-make install
+uv sync --extra dev
 ```
 
 This will install the Pipelex python library and its dependencies using poetry.
