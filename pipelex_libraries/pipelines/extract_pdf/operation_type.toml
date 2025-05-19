@@ -1,0 +1,16 @@
+domain = "pdf_extraction"
+
+[concept]
+OperationType = "The operation type the document describe"
+
+[pipe]
+[pipe.extract_operation_type_from_report]
+PipeLLM = "Extract the operation type described in the document"
+input = "OperationNoteText"
+output = "OperationType"
+system_prompt = """You are an financial analyst. You are given a document that describes an operation. Your job is to classify the operation type from the document."""
+prompt_template = """
+Extract the operation type from this text:
+
+@operation_note_text
+"""

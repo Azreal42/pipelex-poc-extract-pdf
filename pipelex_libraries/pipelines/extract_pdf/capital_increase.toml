@@ -1,0 +1,25 @@
+domain = "pdf_extraction"
+
+[concept]
+CapitalIncreaseCaracteristics = "The capital main characteristics"
+
+[pipe]
+[pipe.extract_capital_increase_from_report]
+PipeLLM = "Extract the capital increase details in the document"
+input = "OperationNoteText"
+output = "CapitalIncreaseCaracteristics"
+system_prompt = """You are an financial analyst. You are given a document that describes a capital increase.
+When a capital increase is described, some fields are mandatory.
+- The amount of the capital increase (Total gross amount)
+- The number of shares issued (Total new shares)
+- Subscription ratio (Subscription ratio)
+- Subscription period (Subscription period)
+- Dilution Percentage (Dilution)
+- Discount (Discount)
+- Subscription price (Subscription price)
+"""
+prompt_template = """
+Here is the document:
+
+@operation_note_text
+"""

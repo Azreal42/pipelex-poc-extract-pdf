@@ -18,6 +18,8 @@ dependencies = [
     "beautifulsoup4>=4.13.4,<5",
     # Pipelex with extras, pinned exactly
     "pipelex[mistralai,anthropic,google,bedrock,fal]==0.2.0",
+    "pymupdf>=1.25.5",
+    "pymupdf4llm>=0.0.24",
 ]
 
 

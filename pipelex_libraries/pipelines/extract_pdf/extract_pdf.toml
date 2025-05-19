@@ -1,0 +1,37 @@
+domain = "pdf_extraction"
+
+[concept]
+OperationType = "The operation type the document describe"
+CapitalIncreaseCaracteristics = "The capital main characteristics"
+
+[pipe]
+[pipe.extract_operation_type_from_report]
+PipeLLM = "Extract the operation type described in the document"
+input = "OperationNoteText"
+output = "OperationType"
+
+[pipe.extract_capital_increase_from_report]
+PipeLLM = "Extract the capital increase characteristics from the document"
+input = "OperationNoteText"
+output = "CapitalIncreaseCaracteristics"
+
+[pipe.extract_capital_increase_if_capital_increase]
+PipeCondition = "Extract capital increase characteristics only for capital increase operation"
+input = "OperationType"
+output = "CapitalIncreaseCaracteristics"
+expression = "operation_type.category"
+add_alias_from_expression_to = "operation_note_text"
+
+[pipe.extract_capital_increase_if_capital_increase.pipe_map]
+"capital increase" = "extract_capital_increase_from_report"
+
+[pipe.extract_pdf_capital_increase_sequence]
+PipeSequence = "Extract operation type, then conditionally extract capital increase characteristics"
+input = "OperationNoteText"
+output = "CapitalIncreaseCaracteristics"
+steps = [
+    { pipe = "extract_operation_type_from_report", result = "operation_type" },
+    { pipe = "extract_capital_increase_if_capital_increase", result = "capital_increase_characteristics" },
+]
+
+definition = "Extraction of operation notes from PDF documents"
