@@ -1,61 +1,53 @@
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
 
-[tool.poetry]
+[project]
 name = "pipelex-cookbook"
 version = "0.1.2"
 description = "Cookbook for Pipelex, the open-source declarative language that lets you define replicable, structured, composable LLM pipelines."
-authors = ["Evotis S.A.S. <evotis@pipelex.com>"]
-maintainers = ["Pipelex staff <oss@pipelex.com>"]
-license = "Elastic License 2.0"
+authors = [{ name = "Evotis S.A.S.", email = "evotis@pipelex.com" }]
+maintainers = [{ name = "Pipelex staff", email = "oss@pipelex.com" }]
+license = { text = "Elastic License 2.0" }
 readme = "README.md"
-repository = "https://github.com/Pipelex/pipelex-cookbook"
-homepage = "https://pipelex.com"
+requires-python = ">=3.11,<3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
     "Operating System :: OS Independent",
 ]
-[tool.poetry.urls]
+dependencies = [
+    # Compatible beautifulsoup4 ≥4.13.4,<5.0
+    "beautifulsoup4>=4.13.4,<5",
+    # Pipelex with extras, pinned exactly
+    "pipelex[mistralai,anthropic,google,bedrock,fal]==0.2.0",
+]
+
+
+[project.urls]
 Documentation = "https://github.com/Pipelex/pipelex/blob/dev/doc/Documentation.md"
 Changelog = "https://github.com/Pipelex/pipelex/blob/dev/CHANGELOG.md"
+Repository = "https://github.com/Pipelex/pipelex-cookbook"
+Homepage = "https://pipelex.com"
 
-[[tool.poetry.packages]]
-include = "cookbook"
 
-[tool.poetry.dependencies]
-beautifulsoup4 = "^4.13.4"
-pipelex = { version = "0.2.0", extras = [
-    "mistralai",
-    "anthropic",
-    "google",
-    "bedrock",
-    "fal",
-] }
-python = ">=3.11,<3.12"
-
-[tool.poetry.group.dev.dependencies]
-boto3-stubs = "^1.35.24"
-mypy = "^1.11.2"
-pyright = "1.1.398" # version 1.1.399 generates a ton of false positives
-pytest = "^8.3.3"
-pytest-pretty = "1.2.0"
-pytest_asyncio = "^0.24.0"
-reuse = "^5.0.2"
-ruff = "^0.6.8"
-types-aioboto3 = { version = "^13.4.0", extras = [
-    "bedrock",
-    "bedrock-runtime",
-] }
-types-aiofiles = "^24.1.0.20240626"
-types-beautifulsoup4 = "^4.12.0.20240907"
-types-markdown = "^3.6.0.20240316"
-types-networkx = "^3.3.0.20241020"
-types-openpyxl = "^3.1.5.20250306"
-types-requests = "^2.32.0.2024091"
-types-PyYAML = "^6.0.12.20250326"
-types-toml = "^0.10.8.20240310"
+[project.optional-dependencies]
+dev = [
+    "boto3-stubs>=1.35.24,<2",
+    "mypy>=1.11.2,<2",
+    "pyright==1.1.398",
+    "pytest>=8.3.3,<9",
+    "pytest-pretty==1.2.0",
+    "pytest_asyncio>=0.24.0,<0.25",
+    "reuse>=5.0.2,<6",
+    "ruff>=0.6.8,<0.7",
+    "types-aioboto3[bedrock,bedrock-runtime]>=13.4.0,<14",
+    "types-aiofiles>=24.1.0.20240626,<25",
+    "types-beautifulsoup4>=4.12.0.20240907,<5",
+    "types-markdown>=3.6.0.20240316,<4",
+    "types-networkx>=3.3.0.20241020,<4",
+    "types-openpyxl>=3.1.5.20250306,<4",
+    "types-requests>=2.32.0.2024091,<3",
+    "types-PyYAML>=6.0.12.20250326,<7",
+    "types-toml>=0.10.8.20240310,<0.11",
+]
 
 [tool.mypy]
 check_untyped_defs = true
