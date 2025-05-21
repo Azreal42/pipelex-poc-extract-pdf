@@ -1,19 +1,20 @@
 domain = "pdf_extraction"
+definition = "pdf_extraction"
 
 [concept]
-OperationType = "The operation type the document describe"
-CapitalIncreaseCaracteristics = "The capital main characteristics"
+# OperationType = "The operation type the document describe"
+# CapitalIncreaseCaracteristics = "The capital main characteristics"
 
-[pipe]
-[pipe.extract_operation_type_from_report]
-PipeLLM = "Extract the operation type described in the document"
-input = "OperationNoteText"
-output = "OperationType"
+# [pipe]
+# [pipe.extract_operation_type_from_report]
+# PipeLLM = "Extract the operation type described in the document"
+# input = "OperationNoteText"
+# output = "OperationType"
 
-[pipe.extract_capital_increase_from_report]
-PipeLLM = "Extract the capital increase characteristics from the document"
-input = "OperationNoteText"
-output = "CapitalIncreaseCaracteristics"
+# [pipe.extract_capital_increase_from_report]
+# PipeLLM = "Extract the capital increase characteristics from the document"
+# input = "OperationNoteText"
+# output = "CapitalIncreaseCaracteristics"
 
 [pipe.extract_capital_increase_if_capital_increase]
 PipeCondition = "Extract capital increase characteristics only for capital increase operation"

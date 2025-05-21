@@ -15,10 +15,10 @@ async def process_capital_increase_report(path_to_pdf: str):
     md_text = pymupdf4llm.to_markdown(path_to_pdf)  # type: ignore
 
     # second step : run the pipe
-    working_memory = WorkingMemoryFactory.make_from_text(text=md_text)
+    working_memory = WorkingMemoryFactory.make_from_text(text=md_text, name="operation_note_text")
 
     pipe_output = await run_pipe_code(
-        pipe_code="extract_pdf",
+        pipe_code="extract_pdf_capital_increase_sequence",
         working_memory=working_memory,
     )
 
